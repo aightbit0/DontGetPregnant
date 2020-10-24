@@ -1,0 +1,49 @@
+ body{
+                font-size: 5.5vmin;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+            }
+            #timetofire{
+                width: 60%;
+                padding: 10px;
+                border: 1px solid lightgray;
+                border-radius: 1em;
+            }
+            #checker{
+                width: 9vw;
+            }
+            .center{
+                width: 100%;
+                text-align: center;
+                margin-top: 5vh;
+            }
+            .table{
+                width: 100%;
+            }
+            .tbdata{
+                background-color: lightpink;
+                padding: 4vw 2vw 4vw;
+                border: 2px solid lightgray;
+                border-radius: 1em;
+            }
+            .reset{
+                padding: 4vw 2vw 4vw;
+                border: 2px solid lightgray;
+                border-radius: 1em;
+            }
+            .motivation{
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 15vh;
+                border: 2px solid lightgray;
+                width: 90%;
+                min-height: 40%;
+                text-align: center;
+                border-radius: 1em;
+                background-color: #ffe7e6;
+            }
