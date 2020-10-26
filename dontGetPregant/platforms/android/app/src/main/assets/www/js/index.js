@@ -17,6 +17,7 @@ function onDeviceReady() {
 		  storage.setItem(dayarr[n],"true");
 		  setStuff();
 	  });
+	  setStuff();
 }
 
 function getTime(){
