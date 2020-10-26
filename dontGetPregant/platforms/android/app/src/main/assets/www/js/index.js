@@ -5,23 +5,41 @@ thetime = storage.getItem("triggertime");
 
 dayarr = ["mo","di","mi","do","fr","sa","so"];
 
-motivationarr = ["Have a nice Day","I Love you","Drink some Water","Sven is the Best *.*","Sonja is the best *.*"];
+motivationarr = ["Have a nice Day","I Love you","Drink some Water","Eat healthy","its a good Day",":)",":D"];
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+	cordova.plugins.notification.local.on("click", function (notification) {
+		var d = new Date();
+		  var n = d.getDay(); 
+		  n=n-1; 
+		  storage.setItem(dayarr[n],"true");
+		  setStuff();
+	  });
+}
 
 function getTime(){
+	cordova.plugins.notification.local.hasPermission(function (granted) { });
 	var wann = storage.getItem("triggertime");
 		splitter = wann.split(":");
 		console.log("Stunde: "+parseInt(splitter[0])+" Minute: "+parseInt(splitter[1]))
 	    cordova.plugins.notification.local.schedule({
-	    	title: 'nimm die Pille!!!',
+			foreground: true,
+			title: 'nimm die Pille!!!',
 	    	trigger: { every: {hour: parseInt(splitter[0]), minute: parseInt(splitter[1])}}
 		});
+		/*
+		
+		  */
 }
+
 
 function setStuff(){
 	document.getElementById("timetofire").value = thetime;
 	var value = storage.getItem("noti");
 	if(value == "ja"){
-		document.getElementById("checker").checked = true;
+		document.getElementById("checkbox").checked = true;
 	}
 	for (var i = 0; i < dayarr.length; i++) {
 		if( storage.getItem(dayarr[i]) == "true" ){
@@ -32,31 +50,38 @@ function setStuff(){
 	}
 	numb = Math.floor(Math.random() * motivationarr.length);
 	document.getElementById("motivation").innerHTML = motivationarr[numb];
+	if(storage.getItem("noti") == "ja"){
+		document.getElementById("status").innerHTML = "&#x23F0; um "+storage.getItem("triggertime")+" Uhr";
+	}
 
 }
 
 function setTrue(){
-	if(document.getElementById("checker").checked == false){
+	if(document.getElementById("checkbox").checked == false){
 		storage.setItem("noti", "nein");
+		document.getElementById("status").innerHTML = "keine Benachrichtigungen";
+		cordova.plugins.notification.local.cancelAll(function() {
+			alert("Alle Benachrichigungen werden deaktiviert");
+		}, this);
+		
 	}else{
 		var wann2 = storage.getItem("triggertime");
 		if(wann2){
 			alert("Benachrichtigungen wurden gesetzt");
 			storage.setItem("noti", "ja");
 			getTime();
+			document.getElementById("status").innerHTML = "&#x23F0; um "+storage.getItem("triggertime")+" Uhr";
 		}else{
 			alert("Baby, erst mal ne Uhrzeit einstellen bitte");
-			document.getElementById("checker").checked = false;
+			document.getElementById("checkbox").checked = false;
 		}	
 	}
 }
 
 function setTime(tme){
-	//getTime();
     console.log(document.getElementById("timetofire").value);
-	//var value = storage.getItem(key); // Pass a key name to get its value.
-	storage.setItem("triggertime", tme) // Pass a key name and its value to add or update that key.
-	//storage.removeItem(key) // Pass a key name to remove that key from storage.
+	storage.setItem("triggertime", tme);
+	document.getElementById("checkbox").checked = false;
 }
 
 function toggleDays(day){

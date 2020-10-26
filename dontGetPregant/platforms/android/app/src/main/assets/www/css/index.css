@@ -2,21 +2,94 @@
                 font-size: 5.5vmin;
                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                 -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
             }
             #timetofire{
-                width: 60%;
+                width: 80%;
                 padding: 10px;
                 border: 1px solid lightgray;
+                background-color: #ffe7e6;
+                text-align: center;
                 border-radius: 1em;
+                font-size: 6vmin;
             }
-            #checker{
-                width: 9vw;
-            }
+            .checkbox {
+              width: 100%;
+              margin: 15px auto;
+              position: relative;
+              display: block;
+          }
+          
+          .checkbox input[type="checkbox"] {
+              width: auto;
+              opacity: 0.00000001;
+              position: absolute;
+              left: 0;
+              margin-left: -20px;
+          }
+          .checkbox label {
+              position: relative;
+          }
+          .checkbox label:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              margin: 4px;
+              width: 22px;
+              height: 22px;
+              transition: transform 0.28s ease;
+              border-radius: 3px;
+              border: 2px solid lightpink;
+          }
+          .checkbox label:after {
+            content: '';
+              display: block;
+              width: 10px;
+              height: 5px;
+              border-bottom: 2px solid lightpink;
+              border-left: 2px solid lightpink;
+              -webkit-transform: rotate(-45deg) scale(0);
+              transform: rotate(-45deg) scale(0);
+              transition: transform ease 0.25s;
+              will-change: transform;
+              position: absolute;
+              top: 12px;
+              left: 10px;
+          }
+          .checkbox input[type="checkbox"]:checked ~ label::before {
+              color: #7bbe72;
+          }
+          
+          .checkbox input[type="checkbox"]:checked ~ label::after {
+              -webkit-transform: rotate(-45deg) scale(1);
+              transform: rotate(-45deg) scale(1);
+          }
+          
+          .checkbox label {
+              min-height: 34px;
+              display: block;
+              padding-left: 40px;
+              margin-bottom: 0;
+              font-weight: normal;
+              cursor: pointer;
+              vertical-align: sub;
+          }
+          .checkbox label span {
+              position: absolute;
+              top: 50%;
+              -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+          }
+          .checkbox input[type="checkbox"]:focus + label::before {
+              outline: 0;
+          }
+           
+           
             .center{
                 width: 100%;
                 text-align: center;
@@ -39,10 +112,21 @@ user-select: none;
             .motivation{
                 margin-left: auto;
                 margin-right: auto;
-                margin-top: 15vh;
+                margin-top: 12vh;
                 border: 2px solid lightgray;
                 width: 90%;
                 min-height: 40%;
+                text-align: center;
+                border-radius: 1em;
+                background-color: #ffe7e6;
+            }
+            .motivation2{
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 2vh;
+                border: 2px solid lightgray;
+                width: 90%;
+               
                 text-align: center;
                 border-radius: 1em;
                 background-color: #ffe7e6;

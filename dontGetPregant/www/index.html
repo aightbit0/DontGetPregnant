@@ -13,8 +13,11 @@
     </head>
     <body onload="setStuff()">
         <div class="center">
-            <label for="timetofire" >Uhrzeit: </label><input onchange="setTime(this.value)" id="timetofire"  type="time"><br><br> 
-            <input id="checker" onchange="setTrue()" type="checkbox"> <label for="checker">Erinner mich nicht Schwanger zu werden</label>
+            <input onchange="setTime(this.value)" id="timetofire"  type="time"><br><br> 
+            <div class="checkbox">
+                <input type="checkbox" onchange="setTrue()"  id="checkbox" name="" value="">
+                <label for="checkbox">Erinner mich nicht Schwanger zu werden</label>
+             </div>
         </div>
         <div class="center">
             <table class="table">
@@ -35,6 +38,9 @@
         
         <div class="motivation">
             <h1 id="motivation"></h1>
+        </div>
+        <div class="motivation2">
+            <h3 id="status">keine Benachrichtigungen</h3>
         </div>
         
     </body>
