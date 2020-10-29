@@ -5,23 +5,33 @@ thetime = storage.getItem("triggertime");
 
 dayarr = ["mo","di","mi","do","fr","sa","so"];
 
-motivationarr = ["Have a nice Day","I Love you","Drink some Water","Eat healthy","its a good Day",":)",":D"];
+motivationarr = ["Have a nice Day","How are you?","Drink some Water","Eat healthy","its a good Day",":)",":D"];
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
+	cordova.plugins.notification.local.hasPermission(function (granted) { alert(granted)});
+	cordova.plugins.notification.local.getDefaults();
 	cordova.plugins.notification.local.on("click", function (notification) {
-		var d = new Date();
-		  var n = d.getDay(); 
-		  n=n-1; 
-		  storage.setItem(dayarr[n],"true");
-		  setStuff();
+		if (confirm('Hast du die Pille genommen?')) {
+			var d = new Date();
+			var n = d.getDay(); 
+			n=n-1; 
+			storage.setItem(dayarr[n],"true");
+			setStuff();
+		} else {
+			alert("du wirst nochmals benachrichtigt");
+			cordova.plugins.notification.local.schedule({
+				title: 'Denk daran die Pille zu nehmen!',
+				trigger: { in: 5, unit: 'minute' }
+			});
+		}
 	  });
 	  setStuff();
 }
 
 function getTime(){
-	cordova.plugins.notification.local.hasPermission(function (granted) { });
+	
 	var wann = storage.getItem("triggertime");
 		splitter = wann.split(":");
 		console.log("Stunde: "+parseInt(splitter[0])+" Minute: "+parseInt(splitter[1]))
@@ -30,9 +40,6 @@ function getTime(){
 			title: 'nimm die Pille!!!',
 	    	trigger: { every: {hour: parseInt(splitter[0]), minute: parseInt(splitter[1])}}
 		});
-		/*
-		
-		  */
 }
 
 
