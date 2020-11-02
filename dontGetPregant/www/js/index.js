@@ -18,10 +18,22 @@ function onDeviceReady() {
 			storage.setItem(dayarr[n],"true");
 			setStuff();
 		} else {
+			if(!storage.getItem("nexttime")){
+				var nexttime = prompt("Wann willst du erinnert werden", "in Minuten");
+				if (nexttime == null || nexttime == "") {
+					txt = "standardwert n 5 min";
+					storage.setItem("nexttime","5");
+				  } else {
+					txt = "du wirst in " + nexttime + " Minute benachrichtigt";
+					storage.setItem("nexttime",nexttime);
+				  }
+			}
 			alert("du wirst nochmals benachrichtigt");
+			gtme = parseInt(storage.getItem("nexttime"));
 			cordova.plugins.notification.local.schedule({
 				title: 'Denk daran die Pille zu nehmen!',
-				trigger: { in: 5, unit: 'minute' }
+				foreground: true,
+				trigger: { in: gtme, unit: 'minute' }
 			});
 		}
 	  });

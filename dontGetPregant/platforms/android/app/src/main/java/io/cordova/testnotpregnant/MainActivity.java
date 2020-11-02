@@ -17,7 +17,7 @@
        under the License.
  */
 
-package io.cordova.test;
+package io.cordova.testnotpregnant;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
