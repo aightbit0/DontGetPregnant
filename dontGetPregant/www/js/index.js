@@ -13,8 +13,12 @@ function onDeviceReady() {
 	cordova.plugins.notification.local.on("click", function (notification) {
 		if (confirm('Hast du die Pille genommen?')) {
 			var d = new Date();
-			var n = d.getDay(); 
-			n=n-1; 
+			var n = d.getDay();
+			if(n == 0){
+				n = 6
+			}else{
+				n=n-1; 
+			}
 			storage.setItem(dayarr[n],"true");
 			setStuff();
 		} else {
@@ -40,6 +44,12 @@ function onDeviceReady() {
 	  setStuff();
 }
 
+
+
+function toggleSet(){
+	document.getElementById('sets').style.display =='none'?document.getElementById('sets').style.display='block':document.getElementById('sets').style.display='none'
+}
+
 function getTime(){
 	
 	var wann = storage.getItem("triggertime");
@@ -52,6 +62,10 @@ function getTime(){
 		});
 }
 
+function setNexttime(valll){
+	storage.setItem("nexttime",valll);
+	getNetxtimeval();
+}
 
 function setStuff(){
 	document.getElementById("timetofire").value = thetime;
@@ -71,7 +85,11 @@ function setStuff(){
 	if(storage.getItem("noti") == "ja"){
 		document.getElementById("status").innerHTML = "&#x23F0; um "+storage.getItem("triggertime")+" Uhr";
 	}
+	getNetxtimeval();
+}
 
+function getNetxtimeval(){
+	document.getElementById("setnexttime").value = storage.getItem("nexttime");
 }
 
 function setTrue(){

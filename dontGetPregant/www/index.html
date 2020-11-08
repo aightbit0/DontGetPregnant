@@ -42,6 +42,17 @@
         <div class="motivation2">
             <h3 id="status">keine Benachrichtigungen</h3>
         </div>
-        
+        <div class="setting">
+            <button class="btn" onclick="toggleSet()">
+                &#9881;
+            </button>
+        </div>
+        <div class="motivation2" id="sets" style="display: none;">
+            <p>Benachrichtigungen nach der Hauptbenachrichtigung:</p>
+            <input class="inp" onchange="setNexttime(this.value)" id="setnexttime" type="number"/>
+            <p>Developer: Sven Latka</p>
+            <p>Made with &hearts;</p>
+            
+        </div>
     </body>
 </html>
